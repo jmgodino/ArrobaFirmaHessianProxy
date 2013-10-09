@@ -1,0 +1,177 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.jccm.edu</groupId>
+  <artifactId>ClienteArrobaFirmaImpl</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0</version>
+  <parent>
+		<groupId>com.jccm.edu</groupId>
+		<artifactId>NexusProject</artifactId>
+		<version>1.0</version>
+  </parent>  
+
+	
+	<build>
+	
+		<filters>
+			<filter>src/main/resources/deployment/${authentication}.properties</filter>
+		</filters>
+ 		<resources>
+	    	<resource>
+	        	<directory>src/main/resources</directory>
+		        <filtering>true</filtering>
+		        <includes>
+		          <include>*</include>
+		        </includes>	        	
+		        <excludes>
+		        	<exclude>deployment/**</exclude>
+		        </excludes>
+	        </resource>
+	   	</resources>  
+	
+		<plugins>
+	 		<plugin>
+	          <groupId>org.apache.maven.plugins</groupId>
+	          <artifactId>maven-jar-plugin</artifactId>
+	          <version>2.3.1</version>
+	          <configuration>
+                <classifier>${authentication}</classifier>
+	          </configuration>	          
+	        </plugin>    		
+		  <plugin>
+	        <groupId>org.codehaus.mojo</groupId>
+	        <artifactId>axistools-maven-plugin</artifactId>
+	        <version>1.4</version>
+	        <dependencies>
+	          <dependency>
+	            <groupId>axis</groupId>
+	            <artifactId>axis</artifactId>
+	            <version>1.4</version>
+	          </dependency>
+	        </dependencies>
+	        <configuration>
+	          <packageSpace>com.picoto.axis</packageSpace>
+	          <sourceDirectory>src/main/resources/</sourceDirectory>
+	          <outputDirectory>src/main/java</outputDirectory>
+        	</configuration>
+			<executions>
+	          <execution>
+	           <phase>validate</phase>
+	            <goals>
+	              <goal>wsdl2java</goal>
+	            </goals>
+	          </execution>
+	        </executions>        	 
+	      </plugin>
+ 
+      </plugins>			
+			
+	</build>
+
+	<dependencies>
+		<dependency>
+		    <groupId>axis</groupId>
+		    <artifactId>axis</artifactId>
+		    <version>1.4</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.axis</groupId>
+		    <artifactId>axis-saaj</artifactId>
+		    <version>1.4</version>
+		</dependency>		
+
+		<dependency>
+		  <groupId>wss4j</groupId>
+		  <artifactId>wss4j-custom</artifactId>
+		  <version>1.5.0</version>
+		  <classifier>MODIFICADO</classifier>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.apache.santuario</groupId>
+		  <artifactId>xmlsec</artifactId>
+		  <version>1.4.4</version>
+		</dependency>	
+
+		<dependency>
+		    <groupId>org.bouncycastle</groupId>
+		    <artifactId>bcprov-jdk15</artifactId>
+		    <version>1.45</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>1.2.16</version>
+		</dependency>
+				
+		<dependency>
+		    <groupId>xalan</groupId>
+		    <artifactId>xalan</artifactId>
+		    <version>2.6.0</version>
+		    <exclusions>
+		    	<exclusion>
+		    		<artifactId>xml-apis</artifactId>
+		    		<groupId>xml-apis</groupId>
+		    	</exclusion>
+		    </exclusions>
+		</dependency>	
+		
+		<dependency>
+		  <groupId>javax.activation</groupId>
+		  <artifactId>activation</artifactId>
+		  <version>1.1.1</version>		
+		</dependency>  
+				
+		
+		<dependency>
+		  <groupId>com.jccm.edu</groupId>		
+		  <artifactId>ClienteArrobaFirmaXmlBeans</artifactId>
+		  <version>1.0</version>
+		  <exclusions>
+		  	<exclusion>
+		  		<artifactId>stax-api</artifactId>
+		  		<groupId>stax</groupId>
+		  	</exclusion>
+		  </exclusions>
+		</dependency>
+		<dependency>
+		  <groupId>com.jccm.edu</groupId>		
+		  <artifactId>ClienteArrobaFirmaIntf</artifactId>
+		  <version>1.0</version>
+		</dependency>	
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8</version>
+			<scope>test</scope>
+		</dependency>
+			
+  	</dependencies>
+  	
+	<properties>
+		<java.source.version>1.4</java.source.version>
+	</properties>
+	
+	<profiles>
+		<profile>
+			<id>usertoken</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<authentication>usertoken</authentication>
+			</properties>
+		</profile>
+		<profile>
+			<id>certificate</id>
+			<properties>
+				<authentication>certificate</authentication>
+			</properties>
+		</profile>		
+	</profiles>
+  
+</project>

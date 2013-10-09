@@ -1,0 +1,13 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="remoteArrobaFirma" class="com.picoto.client.RemoteArrobaFirmaService">
+	</bean>
+	
+	<bean name="/remoteArrobaFirma" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+	  <property name="service" ref="remoteArrobaFirma"/>
+	  <property name="serviceInterface" value="com.picoto.client.RemoteArrobaFirmaServiceIntf"/>
+	</bean>
+
+</beans>

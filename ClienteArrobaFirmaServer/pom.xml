@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.jccm.edu</groupId>
+  <artifactId>ClienteArrobaFirmaServer</artifactId>
+  <packaging>war</packaging>
+  <version>1.0</version>
+  <parent>
+		<groupId>com.jccm.edu</groupId>
+		<artifactId>NexusProject</artifactId>
+		<version>1.0</version>
+  </parent>  
+
+	
+	<build>
+		<plugins>
+	 		<plugin>
+	          <groupId>org.apache.maven.plugins</groupId>
+	          <artifactId>maven-war-plugin</artifactId>
+	          <version>2.1.1</version>
+	          <configuration>
+                <classifier>${authentication}</classifier>
+	          </configuration>	          	          
+	        </plugin>    		
+        </plugins>        
+			
+	</build>
+
+	<dependencies>
+		<dependency>
+		  <groupId>com.jccm.edu</groupId>		
+		  <artifactId>ClienteArrobaFirmaImpl</artifactId>
+		  <version>1.0</version>
+		  <classifier>${authentication}</classifier>
+		</dependency>		
+		
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-remoting</artifactId>
+			<version>2.0.8</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-webmvc</artifactId>
+		    <version>2.5.6</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-aop</artifactId>
+		    <version>2.5.6</version>
+		</dependency>
+		
+  	</dependencies>
+  	
+	<properties>
+		<java.source.version>1.4</java.source.version>
+	</properties>
+	
+	<profiles>
+		<profile>
+			<id>usertoken</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<authentication>usertoken</authentication>
+			</properties>
+		</profile>
+		<profile>
+			<id>certificate</id>
+			<properties>
+				<authentication>certificate</authentication>
+			</properties>
+		</profile>		
+	</profiles>
+  
+</project>

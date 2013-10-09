@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.jccm.edu</groupId>
+  <artifactId>ClienteArrobaFirmaRemoto</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0</version>
+  <parent>
+		<groupId>com.jccm.edu</groupId>
+		<artifactId>NexusProject</artifactId>
+		<version>1.0</version>
+  </parent>  
+
+	
+	<build>
+		<plugins>
+<plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+
+        <configuration>
+          <mainClass>TestArrobaFirma</mainClass>
+          <arguments>
+          </arguments>
+          <systemProperties>
+          </systemProperties>
+        </configuration>
+      </plugin>		
+		</plugins>        
+			
+	</build>
+
+	<dependencies>
+		<dependency>
+		  <groupId>com.jccm.edu</groupId>		
+		  <artifactId>ClienteArrobaFirmaIntf</artifactId>
+		  <version>1.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.jccm.edu</groupId>		
+		  <artifactId>ClienteArrobaFirmaXmlBeans</artifactId>
+		  <version>1.0</version>
+		</dependency>				
+		
+
+		
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-aop</artifactId>
+		    <version>2.5.6</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-web</artifactId>
+		    <version>2.5.6</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-context</artifactId>
+		  <version>2.5.6</version>
+		</dependency>		
+		
+  	</dependencies>
+  	
+	<properties>
+		<java.source.version>1.4</java.source.version>
+	</properties>
+  
+</project>
